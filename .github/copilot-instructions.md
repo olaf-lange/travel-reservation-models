@@ -40,10 +40,12 @@
 - Follow PEP 8 style guidelines
 - Include type hints (PEP 484)
 
-## Flask + Vue.js Template Integration
-- When using Vue.js with Flask/Jinja2 templates, avoid template syntax conflicts
-- Configure Vue.js to use custom delimiters instead of default `{{ }}` syntax
-- Use `delimiters: ['[[', ']]']` in Vue.js createApp configuration
-- Replace all Vue.js `{{ expression }}` with `[[ expression ]]` in HTML templates
-- This prevents Jinja2 from parsing Vue.js template expressions and causing syntax errors
-- Remember to copy updated `src/main.js` to `static/js/main.js` after changes
+## Flask + jQuery Integration
+- Use jQuery for client-side interactivity with Flask/Jinja2 templates
+- Include jQuery via CDN or download locally to `static/js/` directory
+- Use `$(document).ready()` to ensure DOM is loaded before executing jQuery code
+- Handle AJAX requests with jQuery's `$.ajax()`, `$.get()`, or `$.post()` methods
+- Use Flask's `url_for()` function in templates to generate API endpoints for AJAX calls
+- Implement proper error handling for AJAX requests with `.fail()` callbacks
+- Use jQuery selectors and DOM manipulation methods for dynamic content updates
+- Remember to copy updated JavaScript files to `static/js/` directory after changes

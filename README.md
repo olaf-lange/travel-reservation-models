@@ -1,6 +1,6 @@
 # Travel Reservations App
 
-This project is a simple web application for managing hotel reservations. It is built using Flask for the backend and VueJS for the frontend. The application uses local JSON data to simulate a database. VueJS and Tailwind CSS are loaded via CDN, eliminating the need for a frontend build step.
+This project is a simple web application for managing hotel reservations. It is built using Flask for the backend and jQuery for the frontend. The application uses local JSON data to simulate a database. jQuery and Tailwind CSS are loaded via CDN, eliminating the need for a frontend build step.
 
 ## Features
 
@@ -12,7 +12,7 @@ This project is a simple web application for managing hotel reservations. It is 
 ## Technologies Used
 
 - **Backend**: Flask (Python)
-- **Frontend**: VueJS (loaded via CDN), Tailwind CSS (via CDN)
+- **Frontend**: jQuery (loaded via CDN), Tailwind CSS (via CDN)
 - **Data Storage**: Local JSON files
 
 ## Prerequisites
@@ -30,9 +30,9 @@ project-root/
 |   |-- js/          # Copied JavaScript application code
 |       |-- main.js
 |-- src/             # Frontend source file (not directly served)
-|   |-- main.js      # Contains all Vue component logic and templates
+|   |-- main.js      # Contains all jQuery application logic
 |-- templates/       # Contains HTML templates for Flask
-|   |-- index.html   # Loads Vue/Tailwind CDN and static/js/main.js
+|   |-- index.html   # Loads jQuery/Tailwind CDN and static/js/main.js
 |-- app.py           # Main Flask application
 |-- data.json        # Local JSON file for storing hotel and reservation data
 |-- requirements.txt # Python dependencies
@@ -100,7 +100,7 @@ Development involves running the Flask backend and manually copying the frontend
     The backend will run on `http://127.0.0.1:5000` and automatically reload when backend Python files change.
 
 2.  **Modify Frontend JavaScript**:
-    Edit the `src/main.js` file.
+    Edit the `src/main.js` file containing jQuery code.
 
 3.  **Copy Updated Frontend JavaScript**:
     After saving changes to `src/main.js`, copy it to the static folder:
@@ -122,7 +122,7 @@ Development involves running the Flask backend and manually copying the frontend
 
 ## API Endpoints (Example)
 
-The Vue frontend interacts with the Flask backend via the following API endpoints:
+The jQuery frontend interacts with the Flask backend via the following API endpoints:
 
 -   `GET /api/rooms`: Retrieves a list of available rooms.
 -   `GET /api/reservations`: Retrieves a list of all reservations.
