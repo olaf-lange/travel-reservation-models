@@ -39,3 +39,11 @@
 - Always use and update a requirements.txt file for Python modules
 - Follow PEP 8 style guidelines
 - Include type hints (PEP 484)
+
+## Flask + Vue.js Template Integration
+- When using Vue.js with Flask/Jinja2 templates, avoid template syntax conflicts
+- Configure Vue.js to use custom delimiters instead of default `{{ }}` syntax
+- Use `delimiters: ['[[', ']]']` in Vue.js createApp configuration
+- Replace all Vue.js `{{ expression }}` with `[[ expression ]]` in HTML templates
+- This prevents Jinja2 from parsing Vue.js template expressions and causing syntax errors
+- Remember to copy updated `src/main.js` to `static/js/main.js` after changes
