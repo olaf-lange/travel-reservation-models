@@ -2,12 +2,15 @@
 
 This project is a simple web application for managing hotel reservations. It is built using Flask for the backend and VueJS for the frontend. The application uses local JSON data to simulate a database. VueJS and Tailwind CSS are loaded via CDN, eliminating the need for a frontend build step.
 
+**New**: This project now includes an **MCP (Model Context Protocol) Server** that exposes the reservation system functionality through standardized MCP tools. See [MCP_README.md](MCP_README.md) for details.
+
 ## Features
 
 - View available hotel rooms.
 - Make a reservation.
 - Cancel a reservation.
 - View all reservations.
+- **MCP Server**: Programmatic access to all features via MCP protocol
 
 ## Technologies Used
 
@@ -34,9 +37,12 @@ project-root/
 |-- templates/       # Contains HTML templates for Flask
 |   |-- index.html   # Loads Vue/Tailwind CDN and static/js/main.js
 |-- app.py           # Main Flask application
+|-- mcp_server.py    # MCP server for programmatic access
 |-- data.json        # Local JSON file for storing hotel and reservation data
 |-- requirements.txt # Python dependencies
 |-- README.md        # Project documentation
+|-- MCP_README.md    # MCP server documentation
+|-- mcp_config.json  # MCP client configuration
 |-- LICENSE          # Project License
 |-- Changelog.md     # Change history
 ```
@@ -148,6 +154,47 @@ The application uses a `data.json` file to store information about hotel rooms a
   ]
 }
 ```
+
+## MCP Server
+
+This project includes an **MCP (Model Context Protocol) Server** that provides programmatic access to the reservation system. The MCP server allows AI assistants and other MCP clients to interact with the hotel reservation system through standardized tools.
+
+### Available MCP Tools
+
+- `list_rooms` - Get all available rooms
+- `get_room` - Get details of a specific room
+- `create_reservation` - Make a new reservation
+- `cancel_reservation` - Cancel an existing reservation
+- `list_reservations` - Get all reservations
+- `search_available_rooms` - Search rooms by criteria
+
+### Running the MCP Server
+
+```bash
+# Ensure dependencies are installed
+pip install -r requirements.txt
+
+# Run the MCP server
+python mcp_server.py
+```
+
+### Integration with MCP Clients
+
+To use with Claude Desktop or other MCP clients, configure the server in your MCP client configuration. See [MCP_README.md](MCP_README.md) for detailed setup instructions and usage examples.
+
+**Example Configuration** (Claude Desktop):
+```json
+{
+  "mcpServers": {
+    "travel-reservations": {
+      "command": "python",
+      "args": ["path/to/mcp_server.py"]
+    }
+  }
+}
+```
+
+For complete MCP server documentation, see [MCP_README.md](MCP_README.md).
 
 ## Contributing
 

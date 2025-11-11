@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "travel-reservations": {
+      "command": "python",
+      "args": [
+        "mcp_server.py"
+      ],
+      "cwd": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models",
+      "env": {
+        "PYTHONPATH": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+      }
+    }
+  }
+}

@@ -1,3 +1,28 @@
+## [0.3.0] - 2025-11-11
+
+### Added
+- MCP (Model Context Protocol) Server (`mcp_server.py`)
+  - Programmatic access to reservation system via MCP protocol
+  - 7 MCP tools: list_rooms, get_room, list_reservations, get_reservation, create_reservation, cancel_reservation, search_available_rooms
+  - Resource access to data.json through MCP protocol
+  - Full integration with MCP clients like Claude Desktop
+- MCP server documentation (`MCP_README.md`)
+  - Detailed tool descriptions and usage examples
+  - Client configuration instructions
+  - Architecture diagrams
+  - Troubleshooting guide
+- MCP configuration file (`mcp_config.json`)
+  - Sample configuration for MCP clients
+- Test script (`test_mcp_server.py`) for MCP server validation
+- Added `mcp>=1.0.0` dependency to requirements.txt
+
+### Technical Details
+- MCP Server: Python-based stdio server
+- Communication: JSON-RPC over stdio
+- Shared data storage with Flask web app (data.json)
+- Async/await architecture using asyncio
+- Full MCP protocol compliance
+
 ## [0.2.0] - 2025-11-11
 
 ### Added
