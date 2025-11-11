@@ -1,0 +1,42 @@
+{
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Standard Queen",
+      "description": "Comfortable room with queen-size bed",
+      "price": 99,
+      "availability": 4
+    },
+    {
+      "id": 2,
+      "name": "Deluxe King",
+      "description": "Spacious room with king-size bed and city view",
+      "price": 149,
+      "availability": 3
+    },
+    {
+      "id": 3,
+      "name": "Executive Suite",
+      "description": "Luxury suite with separate living area",
+      "price": 249,
+      "availability": 2
+    },
+    {
+      "id": 4,
+      "name": "Family Room",
+      "description": "Large room with two queen beds, perfect for families",
+      "price": 179,
+      "availability": 4
+    }
+  ],
+  "reservations": [
+    {
+      "id": "89a58246-9adb-4a58-b801-6b18914e192c",
+      "roomId": 1,
+      "guestName": "Tobi",
+      "checkIn": "2025-11-11",
+      "checkOut": "2025-11-12",
+      "createdAt": "2025-11-11T20:39:34.749671"
+    }
+  ]
+}
