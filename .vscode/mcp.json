@@ -1,0 +1,15 @@
+{
+	"servers": {
+		"travel-reservations": {
+			"type": "stdio",
+			"command": "${workspaceFolder}/venv/Scripts/python.exe",
+			"args": [
+				"${workspaceFolder}/mcp_server.py"
+			],
+			"env": {
+				"PYTHONPATH": "${workspaceFolder}"
+			}
+		}
+	},
+	"inputs": []
+}

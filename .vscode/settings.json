@@ -1,0 +1,13 @@
+{
+  "mcp.servers": {
+    "travel-reservations": {
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+    }
+  }
+}

@@ -14,6 +14,14 @@
 - MCP configuration file (`mcp_config.json`)
   - Sample configuration for MCP clients
 - Test script (`test_mcp_server.py`) for MCP server validation
+- Usage guide script (`mcp_usage_guide.py`) with interactive examples
+- Quick reference guide (`MCP_QUICKREF.md`)
+- Project summary document (`PROJECT_SUMMARY.md`)
+- VS Code integration (`.vscode/` folder)
+  - `settings.json` - MCP server configuration
+  - `tasks.json` - Tasks for running MCP and Flask servers
+  - `launch.json` - Debug configurations for both servers
+  - `README.md` - VS Code configuration documentation
 - Added `mcp>=1.0.0` dependency to requirements.txt
 
 ### Technical Details
@@ -22,6 +30,7 @@
 - Shared data storage with Flask web app (data.json)
 - Async/await architecture using asyncio
 - Full MCP protocol compliance
+- VS Code task integration for easy server management
 
 ## [0.2.0] - 2025-11-11
 

@@ -19,7 +19,7 @@
       "name": "Executive Suite",
       "description": "Luxury suite with separate living area",
       "price": 249,
-      "availability": 2
+      "availability": 1
     },
     {
       "id": 4,
@@ -37,6 +37,14 @@
       "checkIn": "2025-11-11",
       "checkOut": "2025-11-12",
       "createdAt": "2025-11-11T20:39:34.749671"
+    },
+    {
+      "id": "d3ed663c-b822-4414-8d58-10da9950d29b",
+      "roomId": 3,
+      "guestName": "Batman",
+      "checkIn": "2025-11-17",
+      "checkOut": "2025-11-20",
+      "createdAt": "2025-11-11T21:25:19.879354"
     }
   ]
 }
