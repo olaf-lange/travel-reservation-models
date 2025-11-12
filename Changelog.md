@@ -2,6 +2,52 @@
 
 All notable changes to the Travel Reservations project will be documented in this file.
 
+## [0.5.0] - 2025-11-12
+
+### Added
+- **Flask API: PUT endpoint for updating reservations** (Issue #1)
+  - New `PUT /api/reservations/<reservation_id>` endpoint
+  - Support for partial updates (any combination of fields)
+  - Comprehensive field validation:
+    - Guest name (cannot be empty)
+    - Room ID (must exist and be available when changing)
+    - Check-in/check-out dates (format and logic validation)
+  - Room availability management when changing rooms:
+    - Automatically restores availability to old room (+1)
+    - Reduces availability on new room (-1)
+    - Validates new room has availability before switching
+  - Preserves immutable fields:
+    - Reservation ID remains constant
+    - Creation timestamp never changes
+  - Robust error handling with appropriate HTTP status codes
+  
+- **Comprehensive test suite for Flask API** (`test_app.py`)
+  - 34 test cases covering all scenarios:
+    - 6 successful update tests (happy paths)
+    - 8 validation error tests (error handling)
+    - 4 room availability tests (business logic)
+    - 5 data integrity tests (data consistency)
+    - 5 edge case tests (boundary conditions)
+    - 4 HTTP method tests (API contract)
+    - 2 additional validation tests
+  - All tests passing (34/34)
+  - Test coverage: 64% overall (focused on new endpoint)
+  - Uses pytest with fixtures for test data isolation
+  - Automatic cleanup between tests
+
+### Changed
+- Enhanced `app.py` error handling for better JSON parsing
+- Updated `requirements.txt`:
+  - Added `pytest>=7.4.0` for testing
+  - Added `pytest-cov>=4.1.0` for coverage reporting
+
+### Technical Details
+- Update endpoint supports partial updates (all fields optional except reservation_id)
+- Validates dates in YYYY-MM-DD format
+- Ensures check-out date is always after check-in date
+- Returns updated reservation object with all fields on success
+- Thread-safe data persistence to JSON file
+
 ## [0.4.0] - 2025-11-12
 
 ### Added
