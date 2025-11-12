@@ -1,0 +1,13 @@
+{
+  "github.copilot.referenceable.mcpServers": {
+    "travel-reservations": {
+      "command": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\venv\\Scripts\\python.exe",
+      "args": [
+        "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+      }
+    }
+  }
+}

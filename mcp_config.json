@@ -5,10 +5,11 @@
       "args": [
         "mcp_server.py"
       ],
-      "cwd": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models",
+      "cwd": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models",
       "env": {
-        "PYTHONPATH": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+        "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
       }
     }
   }
 }
+

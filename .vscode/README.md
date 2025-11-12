@@ -7,6 +7,14 @@ This folder contains VS Code-specific configuration for the Travel Reservations 
 ### settings.json
 Contains workspace settings including MCP server configuration.
 
+### settings.json.example
+Example configuration file showing different MCP server setup options:
+- Workspace variable approach (recommended for workspace settings)
+- Absolute path approach (recommended for user settings)
+- Virtual environment configurations (Windows and macOS/Linux)
+
+See [VSCODE_INSTALLATION.md](../VSCODE_INSTALLATION.md) for detailed setup instructions.
+
 ### tasks.json
 Defines VS Code tasks for running the servers:
 - **Start MCP Server** - Runs the MCP server for integration with MCP clients
@@ -57,11 +65,44 @@ python -m flask run
 
 ## MCP Server Integration
 
+### Quick Setup
+
+Use the automated setup scripts for easy configuration:
+
+**Windows (PowerShell)**:
+```powershell
+.\setup_vscode_mcp.ps1
+```
+
+**macOS/Linux (Bash)**:
+```bash
+chmod +x setup_vscode_mcp.sh
+./setup_vscode_mcp.sh
+```
+
+These scripts will:
+- ✅ Check Python installation and dependencies
+- ✅ Create/detect virtual environment
+- ✅ Generate the correct VS Code configuration
+- ✅ Test the MCP server
+
+For detailed manual setup instructions, see [VSCODE_INSTALLATION.md](../VSCODE_INSTALLATION.md).
+
+### Using the MCP Server
+
 The MCP server is configured in `settings.json` and can be used by:
 
-1. **Claude Desktop** - Add the configuration from `mcp_config.json`
-2. **Other MCP Clients** - Use the server configuration provided
-3. **VS Code Extensions** - Any MCP-compatible VS Code extensions will detect the server
+1. **GitHub Copilot in VS Code** - Use `@workspace` to access MCP tools
+2. **Claude Desktop** - Add the configuration from `mcp_config.json`
+3. **Other MCP Clients** - Use the server configuration provided
+
+### Example Usage with GitHub Copilot
+
+Once configured, try these prompts in Copilot Chat:
+- "Show me all available hotel rooms"
+- "Create a reservation for Jane Smith in room 2 from Dec 15-20"
+- "Find rooms under $150 per night"
+- "List all current reservations"
 
 ## Notes
 
@@ -92,7 +133,8 @@ This is normal - it's waiting for stdio input from an MCP client.
 
 ## Additional Resources
 
-- Project documentation: `README.md`
-- MCP server docs: `MCP_README.md`
-- Quick reference: `MCP_QUICKREF.md`
-- Project summary: `PROJECT_SUMMARY.md`
+- **[VSCODE_INSTALLATION.md](../VSCODE_INSTALLATION.md)** - Complete VS Code setup guide with troubleshooting
+- **[MCP_README.md](../MCP_README.md)** - MCP server documentation
+- **[README.md](../README.md)** - Project documentation
+- **[MCP_QUICKREF.md](../MCP_QUICKREF.md)** - Quick reference
+- **[PROJECT_SUMMARY.md](../PROJECT_SUMMARY.md)** - Project summary

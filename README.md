@@ -2,7 +2,13 @@
 
 This project is a simple web application for managing hotel reservations. It is built using Flask for the backend and VueJS for the frontend. The application uses local JSON data to simulate a database. VueJS and Tailwind CSS are loaded via CDN, eliminating the need for a frontend build step.
 
-**New**: This project now includes an **MCP (Model Context Protocol) Server** that exposes the reservation system functionality through standardized MCP tools. See [MCP_README.md](MCP_README.md) for details.
+**New**: This project now includes an **MCP (Model Context Protocol) Server** that exposes the reservation system functionality through standardized MCP tools. 
+
+## Documentation
+
+- 📘 [MCP Server Documentation](MCP_README.md) - Complete MCP server features and usage
+- 🔧 [VS Code Installation Guide](VSCODE_INSTALLATION.md) - Step-by-step guide for installing the MCP server in VS Code
+- 📋 [MCP Quick Reference](MCP_QUICKREF.md) - Quick reference for MCP tools and commands
 
 ## Features
 
@@ -10,13 +16,14 @@ This project is a simple web application for managing hotel reservations. It is 
 - Make a reservation.
 - Cancel a reservation.
 - View all reservations.
-- **MCP Server**: Programmatic access to all features via MCP protocol
+- **MCP Server**: Programmatic access to all features via MCP protocol (see [VS Code Installation Guide](VSCODE_INSTALLATION.md))
 
 ## Technologies Used
 
 - **Backend**: Flask (Python)
 - **Frontend**: VueJS (loaded via CDN), Tailwind CSS (via CDN)
 - **Data Storage**: Local JSON files
+- **MCP Server**: Model Context Protocol for AI assistant integration
 
 ## Prerequisites
 

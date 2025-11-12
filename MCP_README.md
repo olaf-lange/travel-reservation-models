@@ -79,6 +79,137 @@ The server communicates via stdio (standard input/output) following the MCP prot
 
 ### Integration with MCP Clients
 
+#### VS Code Configuration
+
+To install and use the travel-reservation-models MCP server in VS Code with GitHub Copilot, follow these steps:
+
+##### Prerequisites
+- VS Code installed
+- GitHub Copilot extension installed
+- Python 3.x installed and accessible from command line
+
+##### Installation Steps
+
+1. **Open VS Code Settings**:
+   - Press `Ctrl+,` (Windows/Linux) or `Cmd+,` (macOS)
+   - Or navigate to File > Preferences > Settings
+
+2. **Configure MCP Server**:
+   - Search for "MCP" in the settings search bar
+   - Look for "GitHub > Copilot > Referenceable: Mcp Servers"
+   - Click "Edit in settings.json"
+
+3. **Add Server Configuration**:
+   Add the following configuration to your `settings.json`:
+
+   **Windows**:
+   ```json
+   {
+     "github.copilot.referenceable.mcpServers": {
+       "travel-reservations": {
+         "command": "python",
+         "args": [
+           "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"
+         ],
+         "env": {
+           "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+         }
+       }
+     }
+   }
+   ```
+
+   **macOS/Linux**:
+   ```json
+   {
+     "github.copilot.referenceable.mcpServers": {
+       "travel-reservations": {
+         "command": "python3",
+         "args": [
+           "/path/to/your/travel-reservation-models/mcp_server.py"
+         ],
+         "env": {
+           "PYTHONPATH": "/path/to/your/travel-reservation-models"
+         }
+       }
+     }
+   }
+   ```
+
+   **Important**: Replace the paths with your actual project location.
+
+4. **Using Virtual Environment (Optional but Recommended)**:
+   If you're using a Python virtual environment, update the configuration:
+
+   **Windows**:
+   ```json
+   {
+     "github.copilot.referenceable.mcpServers": {
+       "travel-reservations": {
+         "command": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\venv\\Scripts\\python.exe",
+         "args": [
+           "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"
+         ],
+         "env": {
+           "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+         }
+       }
+     }
+   }
+   ```
+
+   **macOS/Linux**:
+   ```json
+   {
+     "github.copilot.referenceable.mcpServers": {
+       "travel-reservations": {
+         "command": "/path/to/your/travel-reservation-models/venv/bin/python",
+         "args": [
+           "/path/to/your/travel-reservation-models/mcp_server.py"
+         ],
+         "env": {
+           "PYTHONPATH": "/path/to/your/travel-reservation-models"
+         }
+       }
+     }
+   }
+   ```
+
+5. **Restart VS Code**:
+   - Close and reopen VS Code to apply the changes
+   - Or use the command palette (`Ctrl+Shift+P`/`Cmd+Shift+P`) and run "Developer: Reload Window"
+
+##### Verification
+
+1. **Check Server Status**:
+   - Open GitHub Copilot Chat in VS Code
+   - Type `@workspace` and you should see the travel-reservations MCP server available
+
+2. **Test the Connection**:
+   Try asking Copilot:
+   - "Show me all available rooms from the travel reservations server"
+   - "List current reservations"
+
+##### Troubleshooting VS Code Integration
+
+**Server not showing up**:
+- Verify Python is in your system PATH: `python --version` or `python3 --version`
+- Check that the paths in settings.json are absolute and correct
+- Ensure `mcp_server.py` has the correct permissions
+- Check VS Code's Output panel (View > Output) and select "GitHub Copilot" from the dropdown
+
+**Permission errors**:
+- On Windows, run VS Code as administrator if needed
+- On macOS/Linux, ensure the script has execute permissions: `chmod +x mcp_server.py`
+
+**Import errors**:
+- Verify all dependencies are installed: `pip install -r requirements.txt`
+- If using a virtual environment, ensure it's activated or use the full path to the venv Python executable
+
+**Path issues on Windows**:
+- Use double backslashes `\\` or forward slashes `/` in JSON paths
+- Example: `"Y:\\path\\to\\file"` or `"Y:/path/to/file"`
+
 #### Claude Desktop Configuration
 Add to your Claude Desktop configuration file:
 
@@ -90,14 +221,16 @@ Add to your Claude Desktop configuration file:
   "mcpServers": {
     "travel-reservations": {
       "command": "python",
-      "args": ["x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"],
+      "args": ["Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"],
       "env": {
-        "PYTHONPATH": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+        "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
       }
     }
   }
 }
 ```
+
+**Note**: Update the path to match your actual installation directory.
 
 #### Other MCP Clients
 Use the provided `mcp_config.json` as a reference for configuring other MCP clients.
