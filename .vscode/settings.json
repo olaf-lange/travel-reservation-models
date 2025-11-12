@@ -9,5 +9,12 @@
         "PYTHONPATH": "${workspaceFolder}"
       }
     }
+  },
+  "chat.mcp.serverSampling": {
+    "travel-reservation-models/.vscode/mcp.json: travel-reservations": {
+      "allowedModels": [
+        "copilot/gpt-4.1"
+      ]
+    }
   }
 }

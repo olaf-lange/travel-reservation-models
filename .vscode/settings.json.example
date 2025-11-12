@@ -1,0 +1,54 @@
+{
+  // Example VS Code workspace settings for MCP server
+  // Copy this configuration to your User settings.json or workspace .vscode/settings.json
+  
+  "github.copilot.referenceable.mcpServers": {
+    "travel-reservations": {
+      // Option 1: Using workspace folder variable (recommended for workspace settings)
+      "command": "python",
+      "args": [
+        "${workspaceFolder}/mcp_server.py"
+      ],
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}"
+      }
+      
+      // Option 2: Using absolute paths (recommended for user settings)
+      // Windows example:
+      // "command": "python",
+      // "args": [
+      //   "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"
+      // ],
+      // "env": {
+      //   "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+      // }
+      
+      // macOS/Linux example:
+      // "command": "python3",
+      // "args": [
+      //   "/path/to/travel-reservation-models/mcp_server.py"
+      // ],
+      // "env": {
+      //   "PYTHONPATH": "/path/to/travel-reservation-models"
+      // }
+      
+      // Option 3: Using virtual environment (Windows)
+      // "command": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\venv\\Scripts\\python.exe",
+      // "args": [
+      //   "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"
+      // ],
+      // "env": {
+      //   "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+      // }
+      
+      // Option 4: Using virtual environment (macOS/Linux)
+      // "command": "/path/to/travel-reservation-models/venv/bin/python",
+      // "args": [
+      //   "/path/to/travel-reservation-models/mcp_server.py"
+      // ],
+      // "env": {
+      //   "PYTHONPATH": "/path/to/travel-reservation-models"
+      // }
+    }
+  }
+}

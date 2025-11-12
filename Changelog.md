@@ -1,3 +1,73 @@
+# Changelog
+
+All notable changes to the Travel Reservations project will be documented in this file.
+
+## [0.4.0] - 2025-11-12
+
+### Added
+- **VS Code MCP Server Installation Documentation**
+  - Comprehensive installation guide (`VSCODE_INSTALLATION.md`)
+    - Prerequisites and dependency installation
+    - Step-by-step VS Code configuration instructions
+    - Virtual environment setup guidance
+    - Detailed troubleshooting section
+    - Configuration reference examples
+    - Usage examples and verification steps
+  - Automated setup scripts
+    - `setup_vscode_mcp.ps1` - PowerShell script for Windows
+    - `setup_vscode_mcp.sh` - Bash script for macOS/Linux
+    - Interactive setup with Python checking, venv detection/creation
+    - Automatic configuration generation
+    - MCP server validation (non-blocking)
+  - Example VS Code settings (`.vscode/settings.json.example`)
+    - Multiple configuration options (absolute paths, workspace variables, venv)
+    - Platform-specific examples (Windows, macOS, Linux)
+    - Commented alternatives for different setups
+
+### Changed
+- Updated `MCP_README.md` with VS Code configuration section
+  - Added VS Code as primary integration option
+  - Detailed Windows and macOS/Linux setup instructions
+  - Virtual environment configuration examples
+  - VS Code-specific troubleshooting tips
+- Updated `README.md` with documentation links
+  - Added links to VSCODE_INSTALLATION.md
+  - Reorganized documentation section
+  - Added MCP technologies to tech stack
+- Updated `PROJECT_SUMMARY.md`
+  - Added new files to project structure
+  - Added VS Code integration section with quick setup commands
+  - Updated MCP client integration documentation
+- Updated `mcp_config.json` with corrected paths
+  - Changed from X: drive to Y: drive paths
+  - Reference configuration for other MCP clients
+
+### Fixed
+- **Fixed hanging issue in `test_mcp_server.py`** (#issue)
+  - Rewrote test script to properly handle stdio-based MCP server
+  - Added timeout handling for MCP protocol tests
+  - Improved test suite with 5 comprehensive tests:
+    1. Module import validation
+    2. Dependency checking
+    3. Data file validation
+    4. Python syntax verification
+    5. MCP protocol communication (with timeout)
+  - Test now completes successfully without hanging
+  - Added helpful error messages and next steps
+- **Fixed hanging issue in setup scripts**
+  - `setup_vscode_mcp.ps1` and `setup_vscode_mcp.sh` now validate server without running it
+  - Changed from execution test to import validation
+  - Scripts complete in seconds instead of hanging indefinitely
+
+### Documentation Improvements
+- Comprehensive VS Code installation documentation with:
+  - Quick setup scripts for automated configuration
+  - Manual setup instructions for advanced users
+  - Troubleshooting guide covering common issues
+  - Configuration variants for different environments
+  - Verification and testing procedures
+  - Example usage patterns for GitHub Copilot integration
+
 ## [0.3.0] - 2025-11-11
 
 ### Added

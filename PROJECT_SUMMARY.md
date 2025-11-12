@@ -12,25 +12,30 @@ This project provides a complete hotel reservation management system with **thre
 
 ```
 travel-reservation-models/
-├── app.py                    # Flask web application & REST API
-├── mcp_server.py            # MCP server implementation
-├── data.json                # Shared data storage (rooms & reservations)
-├── requirements.txt         # Python dependencies
+├── app.py                      # Flask web application & REST API
+├── mcp_server.py               # MCP server implementation
+├── data.json                   # Shared data storage (rooms & reservations)
+├── requirements.txt            # Python dependencies
 ├── templates/
-│   └── index.html          # Vue.js web interface
+│   └── index.html              # Vue.js web interface
 ├── static/js/
-│   └── main.js             # Vue.js application code
+│   └── main.js                 # Vue.js application code
 ├── src/
-│   └── main.js             # Vue.js source (copied to static)
-├── README.md               # Main project documentation
-├── MCP_README.md           # MCP server detailed documentation
-├── MCP_QUICKREF.md         # Quick reference for MCP tools
-├── mcp_config.json         # MCP client configuration sample
-├── mcp_usage_guide.py      # Interactive usage guide
-├── test_mcp_server.py      # MCP server test script
-├── Changelog.md            # Version history
-├── .env.example            # Environment variables template
-└── LICENSE                 # MIT License
+│   └── main.js                 # Vue.js source (copied to static)
+├── .vscode/
+│   └── settings.json.example   # VS Code MCP configuration example
+├── README.md                   # Main project documentation
+├── MCP_README.md               # MCP server detailed documentation
+├── VSCODE_INSTALLATION.md      # VS Code setup guide (NEW)
+├── MCP_QUICKREF.md             # Quick reference for MCP tools
+├── mcp_config.json             # MCP client configuration sample
+├── mcp_usage_guide.py          # Interactive usage guide
+├── test_mcp_server.py          # MCP server test script
+├── setup_vscode_mcp.ps1        # Windows setup script (NEW)
+├── setup_vscode_mcp.sh         # macOS/Linux setup script (NEW)
+├── Changelog.md                # Version history
+├── .env.example                # Environment variables template
+└── LICENSE                     # MIT License
 
 ```
 
@@ -120,7 +125,38 @@ Natural language examples:
 - "List all reservations"
 - "Cancel reservation abc-123"
 
-## 🔌 Claude Desktop Integration
+## 🔌 MCP Client Integration
+
+### VS Code with GitHub Copilot
+
+**Quick Setup**:
+```powershell
+# Windows
+.\setup_vscode_mcp.ps1
+
+# macOS/Linux
+chmod +x setup_vscode_mcp.sh
+./setup_vscode_mcp.sh
+```
+
+**Manual Setup**: See detailed instructions in [VSCODE_INSTALLATION.md](VSCODE_INSTALLATION.md)
+
+**Example Configuration** (add to VS Code `settings.json`):
+```json
+{
+  "github.copilot.referenceable.mcpServers": {
+    "travel-reservations": {
+      "command": "python",
+      "args": ["Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"],
+      "env": {
+        "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+      }
+    }
+  }
+}
+```
+
+### Claude Desktop
 
 1. **Locate Configuration File**:
    - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
@@ -132,9 +168,9 @@ Natural language examples:
      "mcpServers": {
        "travel-reservations": {
          "command": "python",
-         "args": ["x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"],
+         "args": ["Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models\\mcp_server.py"],
          "env": {
-           "PYTHONPATH": "x:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
+           "PYTHONPATH": "Y:\\source\\_hackathons\\mcp_travel\\travel-reservation-models"
          }
        }
      }
