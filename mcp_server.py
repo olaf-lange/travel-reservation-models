@@ -159,6 +159,36 @@ async def handle_list_tools() -> list[Tool]:
             },
         ),
         Tool(
+            name="update_reservation",
+            description="Update an existing hotel reservation with new details while preserving the reservation ID",
+            inputSchema={
+                "type": "object",
+                "properties": {
+                    "reservation_id": {
+                        "type": "string",
+                        "description": "The ID of the reservation to update",
+                    },
+                    "room_id": {
+                        "type": "number",
+                        "description": "New room ID (optional)",
+                    },
+                    "guest_name": {
+                        "type": "string",
+                        "description": "Updated guest name (optional)",
+                    },
+                    "check_in": {
+                        "type": "string",
+                        "description": "New check-in date in YYYY-MM-DD format (optional)",
+                    },
+                    "check_out": {
+                        "type": "string",
+                        "description": "New check-out date in YYYY-MM-DD format (optional)",
+                    },
+                },
+                "required": ["reservation_id"],
+            },
+        ),
+        Tool(
             name="search_available_rooms",
             description="Search for available rooms based on criteria",
             inputSchema={
@@ -336,6 +366,131 @@ async def handle_call_tool(name: str, arguments: dict[str, Any]) -> list[TextCon
                     text=json.dumps({
                         "success": True,
                         "message": "Reservation cancelled successfully"
+                    }, indent=2)
+                )
+            ]
+        
+        elif name == "update_reservation":
+            data = load_data()
+            reservation_id = arguments.get("reservation_id")
+            
+            # Find reservation
+            reservation = next(
+                (r for r in data['reservations'] if r['id'] == reservation_id),
+                None
+            )
+            
+            if not reservation:
+                return [
+                    TextContent(
+                        type="text",
+                        text=json.dumps({"error": "Reservation not found"}, indent=2)
+                    )
+                ]
+            
+            # Get update fields
+            new_room_id = arguments.get("room_id")
+            new_guest_name = arguments.get("guest_name")
+            new_check_in = arguments.get("check_in")
+            new_check_out = arguments.get("check_out")
+            
+            # Validate at least one field is provided for update
+            if all(v is None for v in [new_room_id, new_guest_name, new_check_in, new_check_out]):
+                return [
+                    TextContent(
+                        type="text",
+                        text=json.dumps({"error": "No valid fields provided for update"}, indent=2)
+                    )
+                ]
+            
+            # Validate guest name if provided
+            if new_guest_name is not None:
+                if not new_guest_name or not new_guest_name.strip():
+                    return [
+                        TextContent(
+                            type="text",
+                            text=json.dumps({"error": "Guest name cannot be empty"}, indent=2)
+                        )
+                    ]
+            
+            # Validate and handle room change if provided
+            if new_room_id is not None:
+                old_room_id = reservation['roomId']
+                
+                # Only process room change if it's actually different
+                if new_room_id != old_room_id:
+                    new_room = next((r for r in data['rooms'] if r['id'] == new_room_id), None)
+                    
+                    if not new_room:
+                        return [
+                            TextContent(
+                                type="text",
+                                text=json.dumps({"error": "New room not found"}, indent=2)
+                            )
+                        ]
+                    
+                    if new_room['availability'] <= 0:
+                        return [
+                            TextContent(
+                                type="text",
+                                text=json.dumps({"error": "New room not available"}, indent=2)
+                            )
+                        ]
+                    
+                    # Update room availability
+                    old_room = next((r for r in data['rooms'] if r['id'] == old_room_id), None)
+                    if old_room:
+                        old_room['availability'] += 1
+                    new_room['availability'] -= 1
+                    
+                    reservation['roomId'] = new_room_id
+            
+            # Validate and update dates if provided
+            if new_check_in is not None or new_check_out is not None:
+                check_in = new_check_in if new_check_in is not None else reservation['checkIn']
+                check_out = new_check_out if new_check_out is not None else reservation['checkOut']
+                
+                # Basic date format validation
+                try:
+                    from datetime import datetime as dt
+                    check_in_date = dt.strptime(check_in, '%Y-%m-%d')
+                    check_out_date = dt.strptime(check_out, '%Y-%m-%d')
+                    
+                    if check_out_date <= check_in_date:
+                        return [
+                            TextContent(
+                                type="text",
+                                text=json.dumps({"error": "Check-out date must be after check-in date"}, indent=2)
+                            )
+                        ]
+                        
+                except ValueError:
+                    return [
+                        TextContent(
+                            type="text",
+                            text=json.dumps({"error": "Invalid date format. Use YYYY-MM-DD"}, indent=2)
+                        )
+                    ]
+                
+                if new_check_in is not None:
+                    reservation['checkIn'] = check_in
+                if new_check_out is not None:
+                    reservation['checkOut'] = check_out
+            
+            # Update guest name if provided
+            if new_guest_name is not None:
+                reservation['guestName'] = new_guest_name.strip()
+            
+            # Save updated data
+            save_data(data)
+            
+            return [
+                TextContent(
+                    type="text",
+                    text=json.dumps({
+                        "success": True,
+                        "reservation": reservation,
+                        "message": f"Reservation updated successfully for {reservation['guestName']}"
                     }, indent=2)
                 )
             ]

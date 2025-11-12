@@ -1,3 +1,58 @@
+# Changelog
+
+All notable changes to the Travel Reservations project will be documented in this file.
+
+## [0.6.0] - 2025-11-12
+
+### Added
+- **MCP Server: update_reservation tool** (Issue #4)
+  - New `update_reservation` MCP tool for modifying existing reservations
+  - Support for partial updates (all fields optional except reservation_id)
+  - Update guest name, check-in date, check-out date, and/or room ID
+  - Comprehensive field validation:
+    - Guest name (cannot be empty)
+    - Room ID (must exist and be available when changing)
+    - Check-in/check-out dates (format and logic validation)
+  - Room availability management when changing rooms:
+    - Automatically restores availability to old room (+1)
+    - Reduces availability on new room (-1)
+    - Validates new room has availability before switching
+    - No changes when keeping the same room
+  - Preserves immutable fields:
+    - Reservation ID remains constant
+    - Creation timestamp never changes
+  - AI-optimized response format with success/error messages
+  
+- **Comprehensive test suite for MCP server** (`test_mcp_server.py`)
+  - 27 pytest-based async test cases covering all scenarios:
+    - 6 successful update tests (happy paths)
+    - 8 validation error tests (error handling)
+    - 4 room availability tests (business logic)
+    - 4 data integrity tests (data consistency)
+    - 3 edge case tests (boundary conditions)
+    - 2 additional validation tests
+  - All tests passing (27/27) ✅
+  - Test coverage: 57% overall (focused on new tool)
+  - Uses pytest-asyncio for async test execution
+  - Automatic test data setup and teardown
+
+### Changed
+- Updated `mcp_server.py`:
+  - Added `update_reservation` tool to `handle_list_tools()`
+  - Implemented handler logic in `handle_call_tool()`
+  - Enhanced date validation with datetime parsing
+  - Improved error messages for AI assistant context
+- Updated `requirements.txt`:
+  - Added `pytest-asyncio>=0.21.0` for async testing support
+
+### Technical Details
+- Update tool supports partial updates (all fields optional except reservation_id)
+- Validates dates in YYYY-MM-DD format using datetime.strptime
+- Ensures check-out date is always after check-in date
+- Returns structured JSON with success flag, reservation object, and message
+- Consistent behavior with Flask API PUT endpoint
+- Thread-safe data persistence to JSON file
+
 ## [0.3.0] - 2025-11-11
 
 ### Added
